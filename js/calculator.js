@@ -18,8 +18,15 @@ function CalcAction(action) {
 
     count.push(Number(document.getElementById("total").innerHTML))
 
-    document.getElementById("accumulator").removeAttribute("hidden")
-    document.getElementById("accumulator").innerHTML += ` ${document.getElementById("total").innerHTML} ${action}`
+    if (currentNumber.split('')[currentNumber.length - 1] == '.'){
+        document.getElementById("accumulator").removeAttribute("hidden")
+        document.getElementById("accumulator").innerHTML += ` ${document.getElementById("total").innerHTML}0 ${action}`
+    }
+    else{
+        document.getElementById("accumulator").removeAttribute("hidden")
+        document.getElementById("accumulator").innerHTML += ` ${document.getElementById("total").innerHTML} ${action}`
+    }
+
     document.getElementById("total").innerHTML = ""
 
     count.push(action)
@@ -28,7 +35,11 @@ function CalcAction(action) {
 function AddComma() {
     var currentNumber = document.getElementById("total").innerHTML
 
-    if (!currentNumber.includes(".")) {
+    if (currentNumber == ''){
+        document.getElementById("total").removeAttribute("hidden")
+        document.getElementById("total").innerHTML = "0."
+    }
+    else if (!currentNumber.includes(".")) {
         document.getElementById("total").innerHTML += "."
     }
 
